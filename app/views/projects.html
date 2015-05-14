@@ -1,1 +1,15 @@
 <h1>Projects</h1>
+{{data}}
+{{nishim}}
+<div id="actions" >
+  <button ng-click="setAction(1)" type="button" id="searchButton">Search</button>
+  <button ng-click="setAction(2)" type="button" id="createButton">Create</button>
+  <button ng-click="setAction(3)" type="button" id="deleteButton">Delete</button>
+</div>
+
+<!-- Recherche -->
+<div class="action" ng-show="isSelected(1)" id="search" ng-include="'searchForm.html'"><br></div>
+
+
+<!-- Formulaire creation -->
+<div id ="form" ng-show="isSelected(2)" ng-include="'creationForm.html'" ></div><!--TODO add ng-submit-->

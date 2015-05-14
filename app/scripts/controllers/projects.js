@@ -1,39 +1,29 @@
 'use strict';
 /**
- * Created by webdev on 5/6/15.
+ * Created by webdev on 5/14/15.
  */
+
+
 angular.module('pooIhmExemplesApp')
 
 
 
-    .controller('UsersCtrl', ['$scope', '$http', '$routeParams','Services' , function ($scope,Services) {
+  .controller('ProjectsCtrl', ['$scope', '$http', '$routeParams','Services' , function ($scope,Services) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.userStr = 'Users';
-
-
-
-
-    $scope.actionSelected=0 ;
-
-
-    $scope.isSelected = function(x){
-      return $scope.actionSelected===x;
-    };
-    $scope.setAction = function(x){
-       $scope.actionSelected=x;
-    };
+    $scope.projectStr = "Projects";
+    $scope.nishim = "nishim";
 
 
     //FUNCTIONS
 
-    $scope.getAllUsers = function(){
-      Services.getAll($scope.userStr,function(data) {
-          $scope.users = data;
+    $scope.getAllProjects = function(){
+      Services.getAll($scope.projectStr,function(data) {
+          $scope.projects = data;
         },
         function(data) {
           $scope.error = data;
@@ -41,16 +31,16 @@ angular.module('pooIhmExemplesApp')
     };
 
     $scope.getUserById = function(id){
-      Services.getById($scope.userStr,id,function(data) {
-          $scope.user = data;
+      Services.getById($scope.projectStr,id,function(data) {
+          $scope.project = data;
         },
         function(data) {
           $scope.error = data;
         });
     };
 
-    $scope.addUser = function(user){
-      Services.add($scope.userStr,user,function(data) {
+    $scope.addProject = function(project){
+      Services.add($scope.projectStr,project,function(data) {
           //TODO show the new user
         },
         function(data) {
@@ -58,8 +48,8 @@ angular.module('pooIhmExemplesApp')
         });
     };
 
-    $scope.delUser = function(id){
-      Services.delete($scope.userStr,id,function(data) {
+    $scope.delProject = function(id){
+      Services.delete($scope.projectStr,id,function(data) {
           $scope.getAll();
         },
         function(data) {
@@ -67,8 +57,8 @@ angular.module('pooIhmExemplesApp')
         });
     };
 
-    $scope.editUser = function(user){
-      Services.edit($scope.userStr,user,function(data) {
+    $scope.editProject = function(project){
+      Services.edit($scope.projectStr,project,function(data) {
           //TODO show the edited user
         },
         function(data) {
@@ -77,7 +67,7 @@ angular.module('pooIhmExemplesApp')
     };
 
     $scope.getUserCompInfo = function(id){
-      Services.getCompInfo($scope.userStr,id,function(data) {
+      Services.getCompInfo($scope.projectStr,id,function(data) {
           $scope.users = data;
         },
         function(data) {
@@ -85,8 +75,8 @@ angular.module('pooIhmExemplesApp')
         });
     };
 
-    if ($routeParams.userId) {
-      Users.get($routeParams.userId,
+    if ($routeParams.projectId) {
+      Users.get($routeParams.projectId,
         function(data) {
           $scope.user = data;
         },

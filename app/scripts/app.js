@@ -37,9 +37,6 @@ angular
       .when('/projects' , {
         templateUrl: 'views/projects.html',
         controller: 'ProjectsCtrl'
-      }).when('/roles' , {
-        templateUrl: 'views/roles.html',
-        controller: 'RolesCtrl'
       })
       /*.when('/users/:userId', {
         templateUrl: 'views/Users/show.html',
