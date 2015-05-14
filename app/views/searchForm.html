@@ -1,0 +1,6 @@
+<div ng-controller="FormController as form">
+  Name: <input type="text" ng-model="nameSearched">
+<select  ng-options="option in form.searchOptions"  ng-model="option">
+  <option value="">(blank)</option>
+</select><br>
+</div>

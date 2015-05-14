@@ -18,25 +18,6 @@ angular
     'ngTouch'
   ])
 
-  .service('sharedData',function () {
-    var id = "nune" ;
-
-    function getId(id){
-      return id
-    }
-    function setId(id){
-      this.id = id;
-    }
-
-    return {
-      getProperty: function () {
-        return property;
-      },
-      setProperty: function (value) {
-        property = value;
-      }
-    }
-  })
 
 
   .config(function ($routeProvider) {
@@ -50,10 +31,17 @@ angular
         controller: 'AboutCtrl'
       })
       .when('/users' , {
-        templateUrl: 'views/Users/list.html',
+        templateUrl: 'views/users.html',
         controller: 'UsersCtrl'
       })
-      .when('/users/:userId', {
+      .when('/projects' , {
+        templateUrl: 'views/projects.html',
+        controller: 'ProjectsCtrl'
+      }).when('/roles' , {
+        templateUrl: 'views/roles.html',
+        controller: 'RolesCtrl'
+      })
+      /*.when('/users/:userId', {
         templateUrl: 'views/Users/show.html',
         controller: 'UsersCtrl'
       })
@@ -68,7 +56,7 @@ angular
       .when('/user/*', {
         templateUrl: 'views/user.html',
         controller: 'UserCtrl'
-      })
+      })*/
       .otherwise({
         redirectTo: '/'
       });

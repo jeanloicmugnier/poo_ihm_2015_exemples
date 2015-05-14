@@ -1,0 +1,25 @@
+<!--  Create new user Form -->
+<form name="reviewForm" ng-controller="CreateController as createCtrl" ng-submit="createCtrl.addUser(user)">
+
+  <!--  creation Form -->
+  <h4>Create a new User</h4>
+
+  <fieldset class="form-group">
+    Name: <input type="text" ng-model="createCtrl.user.name" class="form-control" title="Name" required><br>
+  </fieldset>
+  <fieldset class="form-group">
+    Surname: <input type="text" ng-model="createCtrl.user.surname" class="form-control" title="Surname" required><br>
+  </fieldset>
+
+  <fieldset class="form-group">
+   Email: <input ng-model="reviewCtrl.user.email" type="email" class="form-control" placeholder="Example@example.com" title="Email" required>
+  </fieldset>
+
+  <fieldset class="form-group">
+    Website: <input ng-model="reviewCtrl.user.website" type="url" class="form-control"  title="Url" required>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <input type="submit"  value="Create User" />
+  </fieldset>
+</form>
