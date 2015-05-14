@@ -1,0 +1,9 @@
+<div class="infos"  ng-hide="hide">
+  name: <input name="id" type="text" value="{{user.name}}"  ng-readonly="valuesHide" /><br/>
+  surname: <input name="id" type="text" value="{{user.surname}}"  ng-readonly="valuesHide" /><br/>
+  email: <input name="id" type="text" value="{{user.email}}"  ng-readonly="valuesHide" /><br/>
+  website: <input name="id" type="text" value="{{user.website}}"  ng-readonly="valuesHide" /><br/>
+  <button ng-click="toggleModif()" class="modify">Modify</button><button ng-hide="modifHide" ng-click="ok()" class="ok">OK</button><button ng-click="cancel()" ng-hide="modifHide" class="cancel">Cancel</button>
+  <button class="delete">Delete</button>
+  <br/><br/>
+</div>

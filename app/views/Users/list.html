@@ -12,22 +12,10 @@
 <div class="action" id="delete">uuuuuuuuu</div>
 <div>
 <h3>Liste des utilisateurs:</h3>
-<ul>
-  <li id="user" ng-repeat="user in users | filter:nameSearched ">
+  <div id="user" ng-repeat="user in users | filter:nameSearched ">
 
-    <button class="buttonUser"  ng-click="toggle()" > {{user.name}}, {{user.surname}}</button>
-    <div class="infos" ng-attr-id="{{ orig.id }}" ng-hide="hide">
-      id : <input name="id" type="text" value="{{orig.id}}"  ng-readonly="valuesHide" /><br/>
-      name: <input name="id" type="text" value="{{orig.name}}"  ng-readonly="valuesHide" /><br/>
-      surname: <input name="id" type="text" value="{{orig.surname}}"  ng-readonly="valuesHide" /><br/>
-      email: <input name="id" type="text" value="{{orig.email}}"  ng-readonly="valuesHide" /><br/>
-      website: <input name="id" type="text" value="{{orig.website}}"  ng-readonly="valuesHide" /><br/>
-      created at : <input name="id" type="text" value="{{orig.createdAt}}"  ng-readonly="valuesHide" /><br/>
-      updated at: <input name="id" type="text" value="{{orig.updatedAt}}"  ng-readonly="valuesHide" /><br/>
-      <button ng-click="toggleModif()" class="modify">Modify</button><button ng-hide="modifHide" ng-click="ok()" class="ok">OK</button><button ng-click="cancel()" ng-hide="modifHide" class="cancel">Cancel</button>
-      <button class="delete">Delete</button>
-      <br/><br/>
-    </div>
-  </li>
-</ul>
+    <a class="buttonUser" href="#/user" ng-attr-id="{{ user.id }}"  ng-click="open(this.id)" > {{user.name}}, {{user.surname}}</a>
+  </br>
+  </div>
 </div>
+.

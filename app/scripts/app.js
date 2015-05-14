@@ -17,6 +17,28 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
+
+  .service('sharedData',function () {
+    var id = "nune" ;
+
+    function getId(id){
+      return id
+    }
+    function setId(id){
+      this.id = id;
+    }
+
+    return {
+      getProperty: function () {
+        return property;
+      },
+      setProperty: function (value) {
+        property = value;
+      }
+    }
+  })
+
+
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -38,6 +60,14 @@ angular
       .when('/search', {
         templateUrl: 'views/search.html',
         controller: 'UsersCtrl'
+      })
+      .when('/user', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl'
+      })
+      .when('/user/*', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl'
       })
       .otherwise({
         redirectTo: '/'

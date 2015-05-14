@@ -8,17 +8,31 @@
  * Controller of the pooIhmExemplesApp
  */
 angular.module('pooIhmExemplesApp')
-  .controller('UsersCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+  .controller('UsersCtrl', ['$scope', '$http', '$routeParams', '$sharedData', function ($scope, $http, $routeParams,$sharedData) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+    /*function getId($scope, $routeParams, BlogPost) {
+      $scope.post = BlogPost.get({postId: $routeParams.postId});
+    };
+
+    var blogServices = angular.module('blogServices ', ['ngResource']);
+
+    blogServices.factory('BlogPost', ['$resource',
+      function($resource){
+        return $resource('action/to/get/:postId.json', {}, {
+          query: {method:'GET', params: { postId: 'all' }, isArray:true}
+        });
+      }]);*/
+
+
     $scope.modifHide=true;
     $scope.valuesHide=true;
 
-    $scope.orig = angular.copy($scope.users);
+    $scope.origs = angular.copy($scope.users);
 
     $scope.reset = function() {
       $scope.users = angular.copy($scope.orig);
@@ -34,9 +48,9 @@ angular.module('pooIhmExemplesApp')
       $route.reload();
     };
 
-    $scope.toggle = function() {
-      $scope.hide = !$scope.hide;
-    };
+    $scope.open = function(id) {
+      $sharedData.setId(id);
+    }
     $scope.toggleModif = function() {
       $scope.valuesHide = false;
       $scope.modifHide = false;
