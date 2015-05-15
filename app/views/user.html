@@ -1,9 +1,19 @@
-<div class="infos"  ng-hide="hide">
-  name: <input name="id" type="text" value="{{user.name}}"  ng-readonly="valuesHide" /><br/>
-  surname: <input name="id" type="text" value="{{user.surname}}"  ng-readonly="valuesHide" /><br/>
-  email: <input name="id" type="text" value="{{user.email}}"  ng-readonly="valuesHide" /><br/>
-  website: <input name="id" type="text" value="{{user.website}}"  ng-readonly="valuesHide" /><br/>
-  <button ng-click="toggleModif()" class="modify">Modify</button><button ng-hide="modifHide" ng-click="ok()" class="ok">OK</button><button ng-click="cancel()" ng-hide="modifHide" class="cancel">Cancel</button>
+<div class="infos" >
+  name: <input name="id" type="text" ng-model="user.name" ng-value="user.name"  ng-readonly="!valueModif" /><br/>
+  surname: <input name="id" type="text" ng-model="user.surname" ng-value="user.surname"  ng-readonly="!valueModif" /><br/>
+  email: <input name="id" type="text" ng-model="user.email" ng-value="user.email"  ng-readonly="!valueModif" /><br/>
+  website: <input name="id" type="text" ng-model="user.website" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
+{{user.name}}
+{{user.surname}}
+  <div id="projects" ng-repeat="project in user.projects" >
+  Projects: <input name="id" type="text" ng-value="user.projects"  ng-readonly="!valueModif" /><br/>
+  Roles: <input name="id" type="text" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
+  </div>
+
+
+  <button ng-click="setModif(true)" class="modify">Modify</button>
+  <button ng-show="valueModif" ng-click="editUser(user)" class="ok">OK</button>
+  <button ng-show="valueModif" ng-click="cancel()"  class="cancel">Cancel</button>
   <button class="delete">Delete</button>
   <br/><br/>
 </div>

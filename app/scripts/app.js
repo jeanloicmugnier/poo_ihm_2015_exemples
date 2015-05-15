@@ -32,7 +32,11 @@ angular
       })
       .when('/users' , {
         templateUrl: 'views/users.html',
-        controller: 'UsersCtrl'
+        controller : 'UsersCtrl'
+      })
+      .when('/user/:id' , {
+        templateUrl: 'views/user.html',
+        controller : 'UserCtrl'
       })
       .when('/projects' , {
         templateUrl: 'views/projects.html',

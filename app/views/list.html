@@ -1,9 +1,8 @@
 
   <div>
-  <h3>Liste des {{}}utilisateurs:</h3>
+  <h3>Liste des Utilisateurs:</h3>
   <div id="user" ng-repeat="user in users | filter:nameSearched ">
-
-    <a class="buttonUser" href="#/user" ng-attr-id="{{ user.id }}"  ng-click="open(this.id)" > {{user.name}}, {{user.surname}}</a>
+    <a class="buttonUser" href="#/user/{{user.id}}" ng-attr-id="{{ user.id }}"> {{user.name}}, {{user.surname}}</a>
     </br>
   </div>
 </div>

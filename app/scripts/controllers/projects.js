@@ -8,7 +8,7 @@ angular.module('pooIhmExemplesApp')
 
 
 
-  .controller('ProjectsCtrl', ['$scope', '$http', '$routeParams','Services' , function ($scope,Services) {
+  .controller('ProjectsCtrl', ['$scope', '$http', '$routeParams','Services' , function ($scope,$routeParams ,Services) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,7 +16,7 @@ angular.module('pooIhmExemplesApp')
     ];
 
     $scope.projectStr = "Projects";
-    $scope.nishim = "nishim";
+    $scope.nishim = "boyaaah";
 
 
     //FUNCTIONS

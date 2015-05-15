@@ -15,4 +15,6 @@ angular.module('pooIhmExemplesApp')
       'Karma'
     ];
 
+    $scope.data = 2000;
+    $scope.actionSelected = 'doit';
   });

@@ -2,15 +2,19 @@
 /**
  * Created by jeanloicmugnier on 5/14/15.
  */
-
 angular.module('pooIhmExemplesApp')
-  .controller('CreateCtrl', ['$scope', '$http', '$routeParams', '$sharedData', function ($scope) {
+  .controller('SearchCtrl', ['$scope', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+    $scope.searchedParam = 'username';
+
+    $scope.setParam = function(x){
+      $scope.searchedParam = x;
+    };
 
 
   }]);

@@ -1,24 +1,28 @@
-<body  >
-
+<head>
+  <link rel="stylesheet" href="styles/form.css" />
+</head>
 <h1>Utilisateurs</h1>
 <div id="actions" >
   <button ng-click="setAction(1)" type="button" id="searchButton">Search</button>
   <button ng-click="setAction(2)" type="button" id="createButton">Create</button>
   <button ng-click="setAction(3)" type="button" id="deleteButton">Delete</button>
+</div><br>
+<!-- Recherche
+<div class="search" ng-show="isSelected(1)" id="search"    ><br><div ng-include src="'views/searchForm.html'" ></div></div>-->
+<div  ng-show="isSelected(1)">
+  <form>
+    <fieldset class="form-group">
+      Name: <input type="text" ng-model="nameSearched">
+      <select>
+        <option  value="">Name</option>
+      </select><br>
+    </fieldset>
+  </form>
 </div>
-<p>
-  {{userStr}}
-{{count}}
-{{users}}
-{{modifHide}}
-{{UsersCtrl.actionSelected}}
-{{actionSelected}}
-</p>
-<!-- Recherche -->
-<div class="action" ng-show="isSelected(1)" id="search" ng-include="'searchForm.html'"><br></div>
+{{nameSearched}}
+<div class="search" ng-show="nameSearched"  ng-include src="'views/list.html'"><br></div>
+
+<!-- Formulaire creation-->
+<div class ="creation" ng-show="isSelected(2)"  ng-include src="'views/creationForm.html'" ></div><!--TODO add ng-submit -->
 
 
-<!-- Formulaire creation -->
-<div id ="form" ng-show="isSelected(2)" ng-include="'creationForm.html'" ></div><!--TODO add ng-submit-->
-
-</body>
