@@ -1,0 +1,24 @@
+<div class="infos" >
+  <!--projNb : {{projNb}}<br><br>
+  rolesNB: {{rolesNb}}<br><br>
+  proj: {{proj}}<br><br>
+  rol: {{rol}}<br><br>
+  projsroles: {{projRoles}}<br><br>-->
+  <form>
+    Title: <input class="infos" type="text" ng-model="project.title" ng-value="project.title"  ng-readonly="!valueModif" /><br/>
+    Description: <input class="infos" type="text" ng-model="project.descr" ng-value="project.descr"  ng-readonly="!valueModif" /><br/>
+    Year: <input class="infos" type="text" ng-model="project.year" ng-value="project.title"  ng-readonly="!valueModif" /><br/>
+
+    <h2 ng-show="userRoles.length!=0">Pesonnes en charge</h2>
+    <div id="projects" ng-repeat="userRole in userRoles" >
+      <h4> {{userRole.name}}</h4>
+      Role: <input class="infos" type="text" ng-value="userRole.role"  ng-readonly="!valueModif" /><br/><br/><br/>
+    </div>
+
+  </form>
+  <button ng-click="setModif(true)" class="modify">Modify</button>
+  <button ng-show="valueModif" ng-click="editProject(project)" class="ok">OK</button>
+  <button ng-show="valueModif" ng-click="cancel()"  class="cancel">Cancel</button>
+  <button ng-click="deleteProject(project.id)" class="delete">Delete</button>
+  <br/><br/>
+</div>

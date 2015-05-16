@@ -52,7 +52,7 @@ angular.module('pooIhmExemplesApp')
      * @param errorCB
      */
     this.add = function(param, obj, successCB, errorCB) {
-      $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/'+param+'/'+ obj)
+      $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/'+param, obj)
         .success(function(data) {
           if (data.status === 'success') {
             successCB(data.data);
@@ -65,12 +65,12 @@ angular.module('pooIhmExemplesApp')
     /**
      * Delete an e
      * @param param
-     * @param projId
+     * @param Id
      * @param successCB
      * @param errorCB
      */
-    this.delete = function(param,projId, successCB, errorCB) {
-      $http.delete('http://poo-ihm-2015-rest.herokuapp.com/api/'+param+'/'+ projId)
+    this.delete = function(param,Id, successCB, errorCB) {
+      $http.delete('http://poo-ihm-2015-rest.herokuapp.com/api/'+param+'/'+ Id)
         .success(function(data) {
           if (data.status === 'success') {
             successCB(data.data);

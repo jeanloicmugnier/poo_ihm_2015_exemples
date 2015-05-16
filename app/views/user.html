@@ -5,23 +5,24 @@
   rol: {{rol}}<br><br>
   projsroles: {{projRoles}}<br><br>-->
   <form>
-  Name: <input name="id" type="text" ng-model="user.name" ng-value="user.name"  ng-readonly="!valueModif" /><br/>
-  Surname: <input name="id" type="text" ng-model="user.surname" ng-value="user.surname"  ng-readonly="!valueModif" /><br/>
-  Email: <input name="id" type="text" ng-model="user.email" ng-value="user.email"  ng-readonly="!valueModif" /><br/>
-  Website: <input name="id" type="text" ng-model="user.website" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
+  Name: <input class="infos" type="text" ng-model="user.name" ng-value="user.name"  ng-readonly="!valueModif" /><br/>
+  Surname: <input class="infos" type="text" ng-model="user.surname" ng-value="user.surname"  ng-readonly="!valueModif" /><br/>
+  Email: <input class="infos" type="text" ng-model="user.email" ng-value="user.email"  ng-readonly="!valueModif" /><br/>
+  Website: <input class="infos" type="text" ng-model="user.website" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
 
     <h2 ng-show="projRoles.length!=0">Projects</h2>
     <div id="projects" ng-repeat="projRole in projRoles" >
-    Title:<input name="id" type="text" ng-value="projRole.title"  ng-readonly="!valueModif" /><br/>
-    Description:<input name="id" type="text" ng-value="projRole.description"  ng-readonly="!valueModif" /><br/>
-    Year: <input name="id" type="text" ng-value="projRole.year"  ng-readonly="!valueModif" /><br/>
-    Role: <input name="id" type="text" ng-value="projRole.role"  ng-readonly="!valueModif" /><br/>
+      <h4>Poject {{projRole.title}}</h4>
+    Title:<input class="infos" type="text" ng-value="projRole.title"  ng-readonly="!valueModif" /><br/>
+    Description:<input class="infos" type="text" ng-value="projRole.description"  ng-readonly="!valueModif" /><br/>
+    Year: <input class="infos" type="text" ng-value="projRole.year"  ng-readonly="!valueModif" /><br/>
+    Role: <input class="infos" type="text" ng-value="projRole.role"  ng-readonly="!valueModif" /><br/><br/><br/>
   </div>
 
   </form>
   <button ng-click="setModif(true)" class="modify">Modify</button>
   <button ng-show="valueModif" ng-click="editUser(user)" class="ok">OK</button>
   <button ng-show="valueModif" ng-click="cancel()"  class="cancel">Cancel</button>
-  <button class="delete">Delete</button>
+  <button ng-click="deleteUser(user.id)" class="delete">Delete</button>
   <br/><br/>
 </div>

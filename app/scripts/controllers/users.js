@@ -14,7 +14,7 @@ angular.module('pooIhmExemplesApp')
 
   }])
 
-    .controller('UsersCtrl', ['$scope', '$http', '$routeParams','Services' , function ($scope,$http,$routeParams,Services) {
+    .controller('UsersCtrl', ['$scope', '$http','$location', '$routeParams','Services' , function ($scope,$http,$location,$routeParams,Services) {
         $scope.awesomeThings = [
           'HTML5 Boilerplate',
           'AngularJS',
@@ -25,7 +25,6 @@ angular.module('pooIhmExemplesApp')
 
         $scope.actionSelected = 0;
 
-
         $scope.isSelected = function (x) {
           return $scope.actionSelected === x;
         };
@@ -35,11 +34,13 @@ angular.module('pooIhmExemplesApp')
         };
 
 
+
+
         //FUNCTIONS
 
-      $scope.addUser = function (user) {
-        Services.add($scope.userStr, user, function (data) {
-            //TODO show the new user
+      $scope.addUser = function () {
+        Services.add($scope.userStr, $scope.newUser, function (data) {
+            $location.path('/user/'+ data.id );
           },
           function (data) {
             $scope.error = data;
@@ -65,14 +66,7 @@ angular.module('pooIhmExemplesApp')
         };
 
 
-        $scope.delUser = function (id) {
-          Services.delete($scope.userStr, id, function () {
-              $scope.getAll();
-            },
-            function (data) {
-              $scope.error = data;
-            });
-        };
+
 
        /* $scope.getUserCompInfo = function (id) {
           Services.getCompInfo($scope.userStr, id,"" ,function (data) {

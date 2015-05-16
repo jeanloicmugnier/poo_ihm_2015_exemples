@@ -1,0 +1,8 @@
+
+<div>
+  <h3>Liste des Projets</h3>
+  <div id="user" ng-repeat="project in projects | filter:nameSearched ">
+    <a class="buttonUser" href="#/project/{{project.id}}" ng-attr-id="{{ project.title }}"> {{project.title}}</a>
+    </br>
+  </div>
+</div>

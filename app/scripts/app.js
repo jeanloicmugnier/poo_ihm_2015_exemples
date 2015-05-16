@@ -38,6 +38,10 @@ angular
         templateUrl: 'views/user.html',
         controller : 'UserCtrl'
       })
+      .when('/project/:id' , {
+        templateUrl: 'views/project.html',
+        controller : 'ProjectCtrl'
+      })
       .when('/projects' , {
         templateUrl: 'views/projects.html',
         controller: 'ProjectsCtrl'

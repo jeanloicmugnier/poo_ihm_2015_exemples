@@ -5,10 +5,7 @@
 
 
 angular.module('pooIhmExemplesApp')
-
-
-
-  .controller('ProjectsCtrl', ['$scope', '$http', '$routeParams','Services' , function ($scope,$routeParams ,Services) {
+  .controller('ProjectsCtrl', ['$scope', '$routeParams','Services','$location' , function ($scope,$http,$routeParams ,Services,$location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,8 +13,16 @@ angular.module('pooIhmExemplesApp')
     ];
 
     $scope.projectStr = "Projects";
-    $scope.nishim = "boyaaah";
 
+    $scope.actionSelected = 0;
+
+    $scope.isSelected = function (x) {
+      return $scope.actionSelected === x;
+    };
+
+    $scope.setAction = function (x) {
+      $scope.actionSelected = x;
+    };
 
     //FUNCTIONS
 
@@ -30,7 +35,7 @@ angular.module('pooIhmExemplesApp')
         });
     };
 
-    $scope.getUserById = function(id){
+    $scope.getProjectById = function(id){
       Services.getById($scope.projectStr,id,function(data) {
           $scope.project = data;
         },
@@ -39,48 +44,23 @@ angular.module('pooIhmExemplesApp')
         });
     };
 
-    $scope.addProject = function(project){
-      Services.add($scope.projectStr,project,function(data) {
+    $scope.addProject = function(){
+      Services.add($scope.projectStr,$scope.newProject,function(data) {
           //TODO show the new user
+          $location.path('/project/'+ data.id );
         },
         function(data) {
           $scope.error = data;
         });
     };
 
-    $scope.delProject = function(id){
-      Services.delete($scope.projectStr,id,function(data) {
-          $scope.getAll();
-        },
-        function(data) {
-          $scope.error = data;
-        });
-    };
 
-    $scope.editProject = function(project){
-      Services.edit($scope.projectStr,project,function(data) {
-          //TODO show the edited user
-        },
-        function(data) {
-          $scope.error = data;
-        });
-    };
 
-    $scope.getUserCompInfo = function(id){
-      Services.getCompInfo($scope.projectStr,id,function(data) {
-          $scope.users = data;
+    if ($routeParams) {
+      this.getAllProjects(function (data) {
+          $scope.projects = data;
         },
-        function(data) {
-          $scope.error = data;
-        });
-    };
-
-    if ($routeParams.projectId) {
-      Users.get($routeParams.projectId,
-        function(data) {
-          $scope.user = data;
-        },
-        function(data) {
+        function (data) {
           $scope.error = data;
         });
     }
