@@ -74,14 +74,14 @@ angular.module('pooIhmExemplesApp')
             });
         };
 
-        $scope.getUserCompInfo = function (id) {
-          Services.getCompInfo($scope.userStr, id, function (data) {
+       /* $scope.getUserCompInfo = function (id) {
+          Services.getCompInfo($scope.userStr, id,"" ,function (data) {
               $scope.users = data;
             },
             function (data) {
               $scope.error = data;
             });
-        };
+        };*/
 
         if ($routeParams) {
           $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Users/')

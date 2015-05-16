@@ -1,16 +1,24 @@
 <div class="infos" >
-  name: <input name="id" type="text" ng-model="user.name" ng-value="user.name"  ng-readonly="!valueModif" /><br/>
-  surname: <input name="id" type="text" ng-model="user.surname" ng-value="user.surname"  ng-readonly="!valueModif" /><br/>
-  email: <input name="id" type="text" ng-model="user.email" ng-value="user.email"  ng-readonly="!valueModif" /><br/>
-  website: <input name="id" type="text" ng-model="user.website" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
-{{user.name}}
-{{user.surname}}
-  <div id="projects" ng-repeat="project in user.projects" >
-  Projects: <input name="id" type="text" ng-value="user.projects"  ng-readonly="!valueModif" /><br/>
-  Roles: <input name="id" type="text" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
+  <!--projNb : {{projNb}}<br><br>
+  rolesNB: {{rolesNb}}<br><br>
+  proj: {{proj}}<br><br>
+  rol: {{rol}}<br><br>
+  projsroles: {{projRoles}}<br><br>-->
+  <form>
+  Name: <input name="id" type="text" ng-model="user.name" ng-value="user.name"  ng-readonly="!valueModif" /><br/>
+  Surname: <input name="id" type="text" ng-model="user.surname" ng-value="user.surname"  ng-readonly="!valueModif" /><br/>
+  Email: <input name="id" type="text" ng-model="user.email" ng-value="user.email"  ng-readonly="!valueModif" /><br/>
+  Website: <input name="id" type="text" ng-model="user.website" ng-value="user.website"  ng-readonly="!valueModif" /><br/>
+
+    <h2 ng-show="projRoles.length!=0">Projects</h2>
+    <div id="projects" ng-repeat="projRole in projRoles" >
+    Title:<input name="id" type="text" ng-value="projRole.title"  ng-readonly="!valueModif" /><br/>
+    Description:<input name="id" type="text" ng-value="projRole.description"  ng-readonly="!valueModif" /><br/>
+    Year: <input name="id" type="text" ng-value="projRole.year"  ng-readonly="!valueModif" /><br/>
+    Role: <input name="id" type="text" ng-value="projRole.role"  ng-readonly="!valueModif" /><br/>
   </div>
 
-
+  </form>
   <button ng-click="setModif(true)" class="modify">Modify</button>
   <button ng-show="valueModif" ng-click="editUser(user)" class="ok">OK</button>
   <button ng-show="valueModif" ng-click="cancel()"  class="cancel">Cancel</button>

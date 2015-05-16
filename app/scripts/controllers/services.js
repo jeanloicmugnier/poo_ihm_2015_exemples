@@ -106,8 +106,8 @@ angular.module('pooIhmExemplesApp')
      * @param successCB
      * @param errorCB
      */
-    this.getCompInfo = function (param,id, successCB, errorCB) {
-      $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Projects/' + id + '/'+param)
+    this.getCompInfo = function (param, id, comp, successCB, errorCB) {
+      $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/' + param + "/" + id + '/'+comp)
         .success(function (data) {
           if (data.status === 'success') {
             successCB(data.data);

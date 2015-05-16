@@ -26,28 +26,64 @@ angular.module('pooIhmExemplesApp')
 
     $scope.editUser = function (user) {
       Services.edit($scope.userStr, user, function (data) {
-          $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Users/'+$routeParams.id)
-            .success(function (data) {
+          Services.getById('Users/'+$routeParams.id, function (data) {
               if (data.status == "success") {
                 $scope.user = data.data;
               }
-            })                                                                                                                                                                                                                                                                                                 
+            })
         },
         function (data) {
           $scope.error = data;
         });
     };
 
+    $scope.projRoles=[];
+
     //$id = $sharedData.getId() ;
     //$name = $sharedData.getId() ;
+    var projs = [];
+    var roles = [];
+
+
     if ($routeParams.id) {
-      $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Users/'+$routeParams.id)
-        .success(function (data) {
-          if (data.status == "success") {
-            $scope.user = data.data;
+      Services.getById('Users/',$routeParams.id,
+        function (data) {
+            $scope.user = data;
+        },
+      Services.getCompInfo('Users',$routeParams.id,'Projects',
+          function (data) {
+            projs=data;
+            $scope.proj =projs;
+          },
+      Services.getCompInfo('Users',$routeParams.id,'Roles',
+          function (data) {
+            roles = data;
+            $scope.rol = roles;
+
+
+      var projet;
+      var role;
+      var index=0;
+      $scope.projNb=projs.length;
+      for(projet=0;projet<projs.length;projet++){
+        for(role=0;role<roles.length;role++){
+          $scope.rolesNb=roles.length;
+          $scope.projNb=projs.length;
+          if(projs[projet].id===roles[role].ProjectId){
+            var obj ={};
+            obj.title = projs[projet].title;
+            obj.description = projs[projet].description;
+            obj.year = projs[projet].year;
+            obj.role = roles[role].name;
+            index = index++;
+            $scope.projRoles.push(obj);
           }
-        });
-    }
+        }
+      }
+          }
+    )))};
+
+
 
     //$scope.orig = angular.copy(user);
   }]);
