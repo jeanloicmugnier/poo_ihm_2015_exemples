@@ -1,4 +1,4 @@
-{{actionSelected}}
+
 <body ng-controller="ProjectsCtrl">
 <head>
   <link rel="stylesheet" href="styles/form.css" />
@@ -6,8 +6,7 @@
 
 
 <h1>Projects</h1>
-{{porjectStr}}
-{{2+2}}
+
 
 <div id="actions" >
   <button ng-click="setAction(1)" type="button" id="searchButton">Search</button>
@@ -43,7 +42,7 @@
       Title: <input type="text" ng-model="newProject.title" class="form-control" title="title" required><br>
     </fieldset>
     <fieldset class="form-group">
-      Description: <input type="text" ng-model="newProject.descr" class="form-control" title="Description" required><br>
+      Description: <input type="text" ng-model="newProject.description" class="form-control" title="Description" required><br>
     </fieldset>
 
     <fieldset class="form-group">
@@ -63,5 +62,5 @@
   </form>
 
 </div><!--TODO add ng-submit -->
-{{2+2}}
+
 </body>

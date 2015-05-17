@@ -7,7 +7,7 @@ angular.module('pooIhmExemplesApp')
 
 
 
-  .controller('ProjectsCtrl', ['$scope', '$routeParams','Services' , function ($scope,$routeParams ,Services) {
+  .controller('ProjectCtrl', ['$scope', '$routeParams','Services','$location','$route' , function ($scope,$routeParams ,Services,$location,$route) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -23,16 +23,18 @@ angular.module('pooIhmExemplesApp')
     };
 
     $scope.cancel = function(){
-      $scope.user = angular.copy($scope.orig);
+      $scope.project = angular.copy($scope.orig);
+      $scope.valueModif=false;
     };
 
     $scope.ok = function(){
-      $scope.user = angular.copy($scope.orig);
+      $scope.project = angular.copy($scope.orig);
+      $scope.valueModif=false;
     };
 
-$scope.delProject = function(id){
-  Services.delete($scope.projectStr,id,function(data) {
-      $scope.getAll();
+$scope.delProject = function(){
+  Services.delete('Projects',$scope.project.id,function(data) {
+      $location.path('/projects' );
     },
     function(data) {
       $scope.error = data;
@@ -40,23 +42,19 @@ $scope.delProject = function(id){
 };
 
 $scope.editProject = function(project){
-  Services.edit($scope.projectStr,project,function(data) {
-      //TODO show the edited user
+  Services.edit('Projects',project,function(data) {
+      Services.getById('Projects',$routeParams.id, function (data) {
+        $scope.project = data.data;
+        $route.reload();
+      });
     },
     function(data) {
       $scope.error = data;
     });
 };
 
-$scope.getUserCompInfo = function(id){
-  Services.getCompInfo($scope.projectStr,id,function(data) {
-      $scope.users = data;
-    },
-    function(data) {
-      $scope.error = data;
-    });
-};
-    var projs = [];
+    $scope.userRoles = [];
+    var users = [];
     var roles = [];
     if ($routeParams.id) {
       Services.getById('Projects/',$routeParams.id,
@@ -64,33 +62,31 @@ $scope.getUserCompInfo = function(id){
           $scope.project = data;
           $scope.orig= angular.copy($scope.project);
         },
-        Services.getCompInfo('Users',$routeParams.id,'Projects',
+        Services.getCompInfo('Projects',$routeParams.id,'Users',
           function (data) {
-            projs=data;
-            $scope.proj =projs;
+            users=data;
+            $scope.proj =users;
           },
-          Services.getCompInfo('Users',$routeParams.id,'Roles',
+          Services.getCompInfo('Projects',$routeParams.id,'Roles',
             function (data) {
               roles = data;
               $scope.rol = roles;
 
 
-              var projet;
+              var user;
               var role;
-              var index=0;
-              $scope.projNb=projs.length;
-              for(projet=0;projet<projs.length;projet++){
+
+              for(user=0;user<users.length;user++){
                 for(role=0;role<roles.length;role++){
                   $scope.rolesNb=roles.length;
-                  $scope.projNb=projs.length;
-                  if(projs[projet].id===roles[role].ProjectId){
+                  $scope.projNb=users.length;
+                  if(users[user].id===roles[role].UserId){
                     var obj ={};
-                    obj.title = projs[projet].title;
-                    obj.description = projs[projet].description;
-                    obj.year = projs[projet].year;
+                    obj.name = users[user].name;
+                    obj.surname = users[user].surname;
                     obj.role = roles[role].name;
-                    index = index++;
-                    $scope.projRoles.push(obj);
+
+                    $scope.userRoles.push(obj);
                   }
                 }
               }

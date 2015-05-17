@@ -3,7 +3,7 @@
  * Created by webdev on 5/6/15.
  */
 angular.module('pooIhmExemplesApp')
-.controller('UserCtrl', ['$scope', 'Services', '$http', '$routeParams', function ($scope,Services,$http,$routeParams) {
+.controller('UserCtrl', ['$scope', 'Services', '$http', '$routeParams','$location','$route', function ($scope,Services,$http,$routeParams,$location,$route) {
   $scope.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -22,10 +22,12 @@ angular.module('pooIhmExemplesApp')
 
   $scope.cancel = function(){
     $scope.user = angular.copy($scope.orig);
+    $scope.valueModif=false;
   };
 
   $scope.ok = function(){
     $scope.user = angular.copy($scope.orig);
+    $scope.valueModif=false;
   };
     $scope.elements = document.getElementsByClassName('infos');
 
@@ -43,20 +45,23 @@ angular.module('pooIhmExemplesApp')
 
   $scope.editUser = function (user) {
     Services.edit('Users', user, function (data) {
-        Services.getById('Users/'+$routeParams.id, function (data) {
-          $scope.user = data.data;
+        Services.getById('Users',$routeParams.id, function (data) {
+
+        $scope.user = data.data;
+          $route.reload();
         })
       },
       function (data) {
         $scope.error = data;
       });
+
   };
 
 
 
   $scope.deleteUser = function (id) {
     Services.delete('Users', id, function () {
-        $scope.clear();
+        $location.path('/users/' );
       },
       function (data) {
         $scope.error = data;

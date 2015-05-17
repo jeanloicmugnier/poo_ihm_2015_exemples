@@ -52,7 +52,7 @@ angular.module('pooIhmExemplesApp')
      * @param errorCB
      */
     this.add = function(param, obj, successCB, errorCB) {
-      $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/'+param, obj)
+      $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/'+param+'/', obj)
         .success(function(data) {
           if (data.status === 'success') {
             successCB(data.data);

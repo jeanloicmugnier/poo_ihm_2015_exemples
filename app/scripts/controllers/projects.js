@@ -5,7 +5,7 @@
 
 
 angular.module('pooIhmExemplesApp')
-  .controller('ProjectsCtrl', ['$scope', '$routeParams','Services','$location' , function ($scope,$http,$routeParams ,Services,$location) {
+  .controller('ProjectsCtrl', ['$scope', '$routeParams','Services','$location' , function ($scope,$routeParams ,Services,$location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -45,8 +45,7 @@ angular.module('pooIhmExemplesApp')
     };
 
     $scope.addProject = function(){
-      Services.add($scope.projectStr,$scope.newProject,function(data) {
-          //TODO show the new user
+      Services.add('Projects',$scope.newProject,function(data) {
           $location.path('/project/'+ data.id );
         },
         function(data) {
@@ -57,12 +56,7 @@ angular.module('pooIhmExemplesApp')
 
 
     if ($routeParams) {
-      this.getAllProjects(function (data) {
-          $scope.projects = data;
-        },
-        function (data) {
-          $scope.error = data;
-        });
+      $scope.getAllProjects();
     }
 
   }]);
