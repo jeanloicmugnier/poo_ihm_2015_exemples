@@ -56,5 +56,46 @@ $scope.getUserCompInfo = function(id){
       $scope.error = data;
     });
 };
+    var projs = [];
+    var roles = [];
+    if ($routeParams.id) {
+      Services.getById('Projects/',$routeParams.id,
+        function (data) {
+          $scope.project = data;
+          $scope.orig= angular.copy($scope.project);
+        },
+        Services.getCompInfo('Users',$routeParams.id,'Projects',
+          function (data) {
+            projs=data;
+            $scope.proj =projs;
+          },
+          Services.getCompInfo('Users',$routeParams.id,'Roles',
+            function (data) {
+              roles = data;
+              $scope.rol = roles;
+
+
+              var projet;
+              var role;
+              var index=0;
+              $scope.projNb=projs.length;
+              for(projet=0;projet<projs.length;projet++){
+                for(role=0;role<roles.length;role++){
+                  $scope.rolesNb=roles.length;
+                  $scope.projNb=projs.length;
+                  if(projs[projet].id===roles[role].ProjectId){
+                    var obj ={};
+                    obj.title = projs[projet].title;
+                    obj.description = projs[projet].description;
+                    obj.year = projs[projet].year;
+                    obj.role = roles[role].name;
+                    index = index++;
+                    $scope.projRoles.push(obj);
+                  }
+                }
+              }
+            }
+          )))}
+
 
   }]);
