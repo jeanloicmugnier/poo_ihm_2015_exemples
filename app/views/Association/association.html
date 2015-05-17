@@ -1,0 +1,4 @@
+  Project   <select ng-model="project" ng-options="project.title for project in projects"></select><br>
+  User  <select ng-model="user" ng-options="user.name + user.surname  for user in users"></select><br>
+  Role <input type="text" ng-model="role.name"><br>
+  <button ng-click="associate()" class="delete">Associer</button>

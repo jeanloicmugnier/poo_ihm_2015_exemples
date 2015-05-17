@@ -23,45 +23,30 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: '../views/Users/users.html',
+        controller: 'UsersCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
+
       .when('/users' , {
-        templateUrl: 'views/users.html',
+        templateUrl: '../views/Users/users.html',
         controller : 'UsersCtrl'
       })
+      .when('/association' , {
+        templateUrl: '../views/Association/association.html',
+        controller : 'AssociationCtrl'
+      })
       .when('/user/:id' , {
-        templateUrl: 'views/user.html',
+        templateUrl: '../views/Users/user.html',
         controller : 'UserCtrl'
       })
       .when('/project/:id' , {
-        templateUrl: 'views/project.html',
+        templateUrl: '../views/Projects/project.html',
         controller : 'ProjectCtrl'
       })
       .when('/projects' , {
-        templateUrl: 'views/projects.html',
+        templateUrl: '../views/Projects/projects.html',
         controller: 'ProjectsCtrl'
       })
-      /*.when('/users/:userId', {
-        templateUrl: 'views/Users/show.html',
-        controller: 'UsersCtrl'
-      })
-      .when('/search', {
-        templateUrl: 'views/search.html',
-        controller: 'UsersCtrl'
-      })
-      .when('/user', {
-        templateUrl: 'views/user.html',
-        controller: 'UserCtrl'
-      })
-      .when('/user/*', {
-        templateUrl: 'views/user.html',
-        controller: 'UserCtrl'
-      })*/
       .otherwise({
         redirectTo: '/'
       });

@@ -4,17 +4,9 @@
  */
 angular.module('pooIhmExemplesApp')
 
-    .controller('CreateCtrl', ['$scope', '$http', '$routeParams', '$sharedData', function (Services,$scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
 
-  }])
-
-    .controller('UsersCtrl', ['$scope', '$http','$location', '$routeParams','Services' , function ($scope,$http,$location,$routeParams,Services) {
+    .controller('UsersCtrl', ['$scope','$location', '$routeParams','Services' , function ($scope,$location,$routeParams,Services) {
         $scope.awesomeThings = [
           'HTML5 Boilerplate',
           'AngularJS',
@@ -68,21 +60,8 @@ angular.module('pooIhmExemplesApp')
 
 
 
-       /* $scope.getUserCompInfo = function (id) {
-          Services.getCompInfo($scope.userStr, id,"" ,function (data) {
-              $scope.users = data;
-            },
-            function (data) {
-              $scope.error = data;
-            });
-        };*/
 
         if ($routeParams) {
-          $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Users/')
-            .success(function (data) {
-              if (data.status == "success") {
-                $scope.users = data.data;
-              }
-            });
+            $scope.getAllUsers();
         }
         }]);
